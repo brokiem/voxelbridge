@@ -56,9 +56,9 @@ public class ProxyServer implements AutoCloseable {
                     .childOption(ChannelOption.TCP_NODELAY, true)
                     .childOption(ChannelOption.ALLOCATOR, PooledByteBufAllocator.DEFAULT);
 
-            ChannelFuture f = bootstrap.bind(config.getListenPort()).sync();
+            ChannelFuture f = bootstrap.bind(config.getListenHost(), config.getListenPort()).sync();
             serverChannel = f.channel();
-            log.info("Listening on 0.0.0.0:{}", config.getListenPort());
+            log.info("Listening on {}:{}", config.getListenHost(), config.getListenPort());
             log.info("Forwarding to {}:{}", config.getTargetHost(), config.getTargetPort());
             log.info("LAN discovery: UDP 25566");
             log.info("Ready.");

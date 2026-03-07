@@ -4,22 +4,21 @@ import id.brokiem.voxelbridge.server.ProxyConfig;
 import id.brokiem.voxelbridge.server.ProxyServer;
 import lombok.extern.slf4j.Slf4j;
 
+import java.io.File;
+
 @Slf4j
 public class VoxelBridge {
     public static void main(String[] args) {
-        ProxyConfig config = ProxyConfig.builder()
-                .listenPort(25565)
-                .targetHost("127.0.0.1")
-                .targetPort(25569)
-                .build();
+        log.info("---");
+        log.info("VoxelBridge Proxy");
+        log.info("---");
+
+        File configFile = new File("config.yml");
+        ProxyConfig config = ProxyConfig.load(configFile);
 
         ProxyServer proxyServer = new ProxyServer(config);
         Thread shutdownHook = new Thread(proxyServer::close, "voxelbridge-shutdown");
         Runtime.getRuntime().addShutdownHook(shutdownHook);
-
-        log.info("---");
-        log.info("VoxelBridge Proxy");
-        log.info("---");
 
         try {
             proxyServer.start();
