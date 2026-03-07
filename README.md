@@ -4,9 +4,8 @@ VoxelBridge is a protocol translation proxy that allows **Minecraft Legacy Conso
 
 ## Project Status
 
-**⚠️ Early Development**
-
-This project is currently in an experimental state. While the core networking and handshake sequence are implemented, many gameplay packets are still missing or incomplete. Expect bugs and missing features.
+> [!NOTE]
+> This project is currently in an experimental state. While the core networking and handshake sequence are implemented, many gameplay packets are still missing or incomplete. Expect bugs and missing features.
 
 ## Features
 
