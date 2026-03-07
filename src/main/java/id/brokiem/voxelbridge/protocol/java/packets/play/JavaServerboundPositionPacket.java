@@ -5,29 +5,18 @@ import io.netty.buffer.ByteBuf;
 import lombok.Getter;
 import lombok.Setter;
 
-/**
- * Packet Name: packet_position_look
- * ID: 0x06
- * Direction: Serverbound
- * State: Play
- * <p>
- * Sends the client's position, stance, view rotation, and grounded state to
- * the server, commonly after a server-issued position update.
- */
 @Getter
 @Setter
-public class JavaServerboundPositionLookPacket implements Packet {
+public class JavaServerboundPositionPacket implements Packet {
     private double x;
     private double stance;
     private double y;
     private double z;
-    private float yaw;
-    private float pitch;
     private boolean onGround;
 
     @Override
     public int getId() {
-        return 0x06;
+        return 0x04;
     }
 
     @Override
@@ -36,8 +25,6 @@ public class JavaServerboundPositionLookPacket implements Packet {
         this.stance = buf.readDouble();
         this.y = buf.readDouble();
         this.z = buf.readDouble();
-        this.yaw = buf.readFloat();
-        this.pitch = buf.readFloat();
         this.onGround = buf.readBoolean();
     }
 
@@ -47,9 +34,6 @@ public class JavaServerboundPositionLookPacket implements Packet {
         buf.writeDouble(stance);
         buf.writeDouble(y);
         buf.writeDouble(z);
-        buf.writeFloat(yaw);
-        buf.writeFloat(pitch);
         buf.writeBoolean(onGround);
     }
 }
-

@@ -19,6 +19,7 @@ public class Session {
     private Channel serverChannel;
     private ConnectionState state = ConnectionState.HANDSHAKE;
     private String username;
+    private int entityId;
 
     public Session(Channel clientChannel) {
         this.clientChannel = clientChannel;

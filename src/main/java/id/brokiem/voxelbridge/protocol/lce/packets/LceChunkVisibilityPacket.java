@@ -5,27 +5,29 @@ import io.netty.buffer.ByteBuf;
 import lombok.Getter;
 import lombok.Setter;
 
-/**
- * LCE MovePlayerPacket ground-only variant (ID 10 / 0x0A).
- * Wire: byte flags (bit 0 = onGround, bit 1 = isFlying).
- */
 @Getter
 @Setter
-public class LceMovePlayerPacket implements Packet {
-    private byte flags;
+public class LceChunkVisibilityPacket implements Packet {
+    private int x;
+    private int z;
+    private boolean visible;
 
     @Override
     public int getId() {
-        return 0x0A;
+        return 0x32;
     }
 
     @Override
     public void read(ByteBuf buf) {
-        this.flags = buf.readByte();
+        this.x = buf.readInt();
+        this.z = buf.readInt();
+        this.visible = buf.readBoolean();
     }
 
     @Override
     public void write(ByteBuf buf) {
-        buf.writeByte(flags);
+        buf.writeInt(x);
+        buf.writeInt(z);
+        buf.writeBoolean(visible);
     }
 }

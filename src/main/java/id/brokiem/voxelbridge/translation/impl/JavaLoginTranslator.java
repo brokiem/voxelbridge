@@ -31,6 +31,8 @@ public class JavaLoginTranslator implements ClientboundTranslator<JavaClientboun
 
     @Override
     public TranslationResult translate(JavaClientboundLoginPacket input, Session session) {
+        session.setEntityId(input.getEntityId());
+
         LceLoginPacket lce = new LceLoginPacket();
         lce.setClientVersion(config.getLceProtocolVersion());
         lce.setUserName(session.getUsername() != null ? session.getUsername() : "Player");

@@ -2,7 +2,7 @@ package id.brokiem.voxelbridge.translation.impl;
 
 import id.brokiem.voxelbridge.protocol.java.packets.play.JavaClientboundPositionPacket;
 import id.brokiem.voxelbridge.protocol.java.packets.play.JavaServerboundPositionLookPacket;
-import id.brokiem.voxelbridge.protocol.lce.packets.LceMovePlayerPacket;
+import id.brokiem.voxelbridge.protocol.lce.packets.LceMovePlayerPositionRotationPacket;
 import id.brokiem.voxelbridge.session.Session;
 import id.brokiem.voxelbridge.translation.ClientboundTranslator;
 import id.brokiem.voxelbridge.translation.TranslationResult;
@@ -21,14 +21,13 @@ import lombok.extern.slf4j.Slf4j;
 public class JavaPositionTranslator implements ClientboundTranslator<JavaClientboundPositionPacket> {
     @Override
     public TranslationResult translate(JavaClientboundPositionPacket input, Session session) {
-        // Java 0x08 Y = eyes; LCE expects y = feet, yView = eyes
-        double eyeY = input.getY();
-        double feetY = eyeY - 1.62;
+        // Java Y is the player feet level
+        double feetY = input.getY();
 
-        LceMovePlayerPacket lce = new LceMovePlayerPacket();
+        LceMovePlayerPositionRotationPacket lce = new LceMovePlayerPositionRotationPacket();
         lce.setX(input.getX());
         lce.setY(feetY);
-        lce.setYView(eyeY);
+        lce.setYView(feetY + 1.62);
         lce.setZ(input.getZ());
         lce.setYRot(input.getYaw());
         lce.setXRot(input.getPitch());
@@ -36,8 +35,8 @@ public class JavaPositionTranslator implements ClientboundTranslator<JavaClientb
 
         JavaServerboundPositionLookPacket response = new JavaServerboundPositionLookPacket();
         response.setX(input.getX());
-        response.setStanceY(eyeY);
-        response.setFeetY(feetY);
+        response.setStance(feetY);
+        response.setY(feetY + 1.62);
         response.setZ(input.getZ());
         response.setYaw(input.getYaw());
         response.setPitch(input.getPitch());

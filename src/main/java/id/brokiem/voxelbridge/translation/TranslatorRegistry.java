@@ -29,6 +29,11 @@ public class TranslatorRegistry {
         serverbound.put(0x00, new LceKeepAliveTranslator());
         serverbound.put(0x01, new LceLoginTranslator(config));
         serverbound.put(0x02, new LcePreLoginTranslator(config));
+        serverbound.put(0x0A, new LceMovePlayerTranslator());
+        serverbound.put(0x0B, new LceMovePlayerPositionTranslator());
+        serverbound.put(0x0C, new LceMovePlayerRotationTranslator());
+        serverbound.put(0x0D, new LceMovePlayerPositionRotationTranslator());
+        serverbound.put(0xCD, new LceClientCommandTranslator());
 
         // Clientbound LOGIN: Java -> LCE
         // After the login-state success packet, state transitions to PLAY so the play-state login packet is decoded in PLAY
@@ -45,13 +50,16 @@ public class TranslatorRegistry {
         clientbound.get(ConnectionState.PLAY).put(0x09, new JavaHeldItemSlotTranslator());
         clientbound.get(ConnectionState.PLAY).put(0x39, new JavaAbilitiesTranslator());
         clientbound.get(ConnectionState.PLAY).put(0x40, new JavaKickDisconnectTranslator());
+        clientbound.get(ConnectionState.PLAY).put(0x21, new JavaMapChunkTranslator());
+        clientbound.get(ConnectionState.PLAY).put(0x26, new JavaMapChunkBulkTranslator());
+        clientbound.get(ConnectionState.PLAY).put(0x07, new JavaRespawnTranslator());
     }
 
     @SuppressWarnings("unchecked")
     public TranslationResult translateServerbound(Packet packet, Session session) {
         ServerboundTranslator<Packet> translator = (ServerboundTranslator<Packet>) serverbound.get(packet.getId());
         if (translator != null) {
-            log.debug("Translating serverbound LCE packet 0x{} using {}", Integer.toHexString(packet.getId()), translator.getClass().getSimpleName());
+            log.info("Translating serverbound LCE packet 0x{} using {}", Integer.toHexString(packet.getId()), translator.getClass().getSimpleName());
             return translator.translate(packet, session);
         }
         if (loggedUnsupportedServerbound.add(packet.getId())) {
@@ -67,7 +75,7 @@ public class TranslatorRegistry {
         if (stateMap != null) {
             ClientboundTranslator<Packet> translator = (ClientboundTranslator<Packet>) stateMap.get(packet.getId());
             if (translator != null) {
-                log.debug("Translating clientbound Java packet 0x{} in state {} using {}", Integer.toHexString(packet.getId()), state, translator.getClass().getSimpleName());
+                log.info("Translating clientbound Java packet 0x{} in state {} using {}", Integer.toHexString(packet.getId()), state, translator.getClass().getSimpleName());
                 return translator.translate(packet, session);
             }
         }

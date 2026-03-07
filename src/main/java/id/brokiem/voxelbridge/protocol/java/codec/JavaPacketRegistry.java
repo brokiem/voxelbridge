@@ -34,6 +34,9 @@ public final class JavaPacketRegistry {
         play.register(0x09, JavaClientboundHeldItemSlotPacket::new);
         play.register(0x39, JavaClientboundAbilitiesPacket::new);
         play.register(0x40, JavaClientboundKickDisconnectPacket::new);
+        play.register(0x21, JavaClientboundMapChunkPacket::new);
+        play.register(0x26, JavaClientboundMapChunkBulkPacket::new);
+        play.register(0x07, JavaClientboundRespawnPacket::new);
         jpr.stateRegistries.put(ConnectionState.PLAY, play);
 
         return jpr;
