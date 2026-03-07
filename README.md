@@ -2,10 +2,10 @@
 
 VoxelBridge is a protocol translation proxy that allows **Minecraft Legacy Console Edition (LCE) clients to connect to Minecraft Java Edition servers**. It works by translating network packets between the two protocols in real-time.
 
-## Project Status
-
 > [!NOTE]
 > This project is currently in an experimental state. While the core networking and handshake sequence are implemented, many gameplay packets are still missing or incomplete. Expect bugs and missing features.
+
+![LCE and JE Screenshot](assets/LCEandJE.png)
 
 ## Features
 
