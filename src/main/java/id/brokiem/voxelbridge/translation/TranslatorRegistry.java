@@ -61,6 +61,7 @@ public class TranslatorRegistry {
         clientbound.get(ConnectionState.PLAY).put(0x15, new JavaRelEntityMoveTranslator());
         clientbound.get(ConnectionState.PLAY).put(0x16, new JavaEntityLookTranslator());
         clientbound.get(ConnectionState.PLAY).put(0x17, new JavaEntityMoveLookTranslator());
+        clientbound.get(ConnectionState.PLAY).put(0x19, new JavaEntityHeadLookTranslator());
     }
 
     @SuppressWarnings("unchecked")
