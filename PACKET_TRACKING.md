@@ -107,7 +107,7 @@ This document tracks the implementation status of packets in VoxelBridge.
 | 0x0F      | Use Item                            | Missing     | —                                         |       |
 | 0x10      | Set Carried Item                    | Missing     | —                                         |       |
 | 0x11      | Entity Action At Position           | Missing     | —                                         |       |
-| 0x12      | Animate                             | Missing     | —                                         |       |
+| 0x12      | Animate                             | Implemented | `LceAnimateTranslator`                    |       |
 | 0x13      | Player Command                      | Missing     | —                                         |       |
 | 0x14      | Add Player                          | Implemented | —                                         |       |
 | 0x16      | Take Item Entity                    | Implemented | —                                         |       |
