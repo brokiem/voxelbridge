@@ -7,10 +7,6 @@ VoxelBridge is a translation proxy that allows Minecraft Legacy Console Edition 
 > [!NOTE]
 > Many gameplay packets are still missing or incomplete. Expect bugs and missing features. See **[/PACKET_TRACKING.md](PACKET_TRACKING.md)**
 
-## Configuration
-
-It will generate a `config.yml` file when you run the proxy for the first time.
-
 ## Running the Proxy
 
 ### Prerequisites
@@ -29,6 +25,8 @@ mvn clean package
 ```bash
 java -jar target/voxelbridge-1.0-SNAPSHOT.jar
 ```
+
+It will generate a `config.yml` file when you run the proxy for the first time.
 
 ### Connecting
 
@@ -64,7 +62,7 @@ The project is still in **early development**, and many packets are not fully im
 
 Check [PACKET_TRACKING.md](PACKET_TRACKING.md) to see which features and packets are currently implemented.
 
-### I found a bug
+### I found a bug!
 
 Please report bugs in the **Issues** tab.
 
