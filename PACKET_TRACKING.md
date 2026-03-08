@@ -28,7 +28,7 @@ This document tracks the implementation status of packets in VoxelBridge.
 | 0x0A      | Use Bed                       | Missing     | —                                 |                                         |
 | 0x0B      | Animation                     | Missing     | —                                 |                                         |
 | 0x0C      | Spawn Player                  | Implemented | `JavaNamedEntitySpawnTranslator`  |                                         |
-| 0x0D      | Collect Item                  | Missing     | —                                 |                                         |
+| 0x0D      | Collect Item                  | Implemented | `JavaCollectItemTranslator`       |                                         |
 | 0x0E      | Spawn Object                  | Missing     | —                                 |                                         |
 | 0x0F      | Spawn Mob                     | Implemented | `JavaSpawnEntityLivingTranslator` |                                         |
 | 0x10      | Spawn Painting                | Missing     | —                                 |                                         |
@@ -110,7 +110,7 @@ This document tracks the implementation status of packets in VoxelBridge.
 | 0x12      | Animate                             | Missing     | —                                         |       |
 | 0x13      | Player Command                      | Missing     | —                                         |       |
 | 0x14      | Add Player                          | Implemented | —                                         |       |
-| 0x16      | Take Item Entity                    | Missing     | —                                         |       |
+| 0x16      | Take Item Entity                    | Implemented | —                                         |       |
 | 0x17      | Add Entity                          | Missing     | —                                         |       |
 | 0x18      | Add Mob                             | Implemented | —                                         |       |
 | 0x19      | Add Painting                        | Missing     | —                                         |       |
