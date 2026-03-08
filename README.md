@@ -1,11 +1,11 @@
 # VoxelBridge
 
-VoxelBridge is a translation proxy that allows **Minecraft Legacy Console Edition (LCE) clients to connect to Minecraft Java Edition servers**. It works by translating network packets between the two protocols in real-time.
+VoxelBridge is a translation proxy that allows Minecraft Legacy Console Edition (LCE) to connect to Minecraft Java Edition servers.
 
 ![LCE and JE Screenshot](assets/LCEandJE.png)
 
 > [!NOTE]
-> Many gameplay packets are still missing or incomplete. Expect bugs and missing features.
+> Many gameplay packets are still missing or incomplete. Expect bugs and missing features. See **[/PACKET_TRACKING.md](PACKET_TRACKING.md)**
 
 ## Architecture
 
@@ -21,7 +21,7 @@ VoxelBridge acts as a "man-in-the-middle" server:
 
 ## Configuration
 
-When you run VoxelBridge for the first time, it will generate a `config.yml` file.
+It will generate a `config.yml` file when you run the proxy for the first time.
 
 ## Running the Proxy
 
@@ -48,10 +48,4 @@ java -jar target/voxelbridge-1.0-SNAPSHOT.jar
 2.  Configure `config.yml` to point to your Java server.
 3.  Run VoxelBridge.
 4.  Open Minecraft Legacy Console Edition (e.g., Windows, Xbox 360, PS3) on the same network.
-5.  The proxy should appear in the LAN games list. If not, you may need to manually connect to the proxy's IP address.
-
-## Implementation Status
-
-We track the implementation status of all packets in a separate document. See **[/PACKET_TRACKING.md](PACKET_TRACKING.md)**
-
-This file lists which packets are fully implemented, partially implemented, or missing.
+5.  The proxy should appear in the LAN games list.
