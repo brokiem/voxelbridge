@@ -20,6 +20,10 @@ public final class LcePacketRegistry {
         registry.register(0x0C, LceMovePlayerRotationPacket::new);
         registry.register(0x0D, LceMovePlayerPositionRotationPacket::new);
         registry.register(0x10, LceSetCarriedItemPacket::new);
+        registry.register(0x1E, LceMoveEntityPacket::new);
+        registry.register(0x1F, LceMoveEntityPositionPacket::new);
+        registry.register(0x20, LceMoveEntityRotationPacket::new);
+        registry.register(0x21, LceMoveEntityPositionRotationPacket::new);
         registry.register(0xCA, LcePlayerAbilitiesPacket::new);
         registry.register(0xFF, LceDisconnectPacket::new);
         registry.register(0x32, LceChunkVisibilityPacket::new);

@@ -40,6 +40,10 @@ public final class JavaPacketRegistry {
         play.register(0x02, JavaClientboundChatPacket::new);
         play.register(0x0F, JavaClientboundSpawnEntityLivingPacket::new);
         play.register(0x0c, JavaClientboundNamedEntitySpawn::new);
+        play.register(0x14, JavaClientboundEntityPacket::new);
+        play.register(0x15, JavaClientboundRelEntityMovePacket::new);
+        play.register(0x16, JavaClientboundEntityLookPacket::new);
+        play.register(0x17, JavaClientboundEntityMoveLookPacket::new);
         jpr.stateRegistries.put(ConnectionState.PLAY, play);
 
         return jpr;

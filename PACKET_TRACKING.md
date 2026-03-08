@@ -35,10 +35,10 @@ This document tracks the implementation status of packets in VoxelBridge.
 | 0x11      | Spawn Experience Orb          | Missing     | —                                 |                                         |
 | 0x12      | Entity Velocity               | Missing     | —                                 |                                         |
 | 0x13      | Destroy Entities              | Missing     | —                                 |                                         |
-| 0x14      | Entity                        | Missing     | —                                 |                                         |
-| 0x15      | Entity Relative Move          | Missing     | —                                 |                                         |
-| 0x16      | Entity Look                   | Missing     | —                                 |                                         |
-| 0x17      | Entity Look and Relative Move | Missing     | —                                 |                                         |
+| 0x14      | Entity                        | Implemented | `JavaEntityTranslator`            |                                         |
+| 0x15      | Entity Relative Move          | Implemented | `JavaRelEntityMoveTranslator`     |                                         |
+| 0x16      | Entity Look                   | Implemented | `JavaEntityLookTranslator`        |                                         |
+| 0x17      | Entity Look and Relative Move | Implemented | `JavaEntityMoveLookTranslator`    |                                         |
 | 0x18      | Entity Teleport               | Missing     | —                                 |                                         |
 | 0x19      | Entity Head Look              | Missing     | —                                 |                                         |
 | 0x1A      | Entity Status                 | Missing     | —                                 |                                         |
@@ -118,10 +118,10 @@ This document tracks the implementation status of packets in VoxelBridge.
 | 0x1B      | Player Input                        | Missing     | —                                         |       |
 | 0x1C      | Set Entity Motion                   | Missing     | —                                         |       |
 | 0x1D      | Remove Entities                     | Missing     | —                                         |       |
-| 0x1E      | Move Entity                         | Missing     | —                                         |       |
-| 0x1F      | Move Entity Position                | Missing     | —                                         |       |
-| 0x20      | Move Entity Rotation                | Missing     | —                                         |       |
-| 0x21      | Move Entity Position Rotation       | Missing     | —                                         |       |
+| 0x1E      | Move Entity                         | Implemented | —                                         |       |
+| 0x1F      | Move Entity Position                | Implemented | —                                         |       |
+| 0x20      | Move Entity Rotation                | Implemented | —                                         |       |
+| 0x21      | Move Entity Position Rotation       | Implemented | —                                         |       |
 | 0x22      | Teleport Entity                     | Missing     | —                                         |       |
 | 0x23      | Rotate Head                         | Missing     | —                                         |       |
 | 0x26      | Entity Event                        | Missing     | —                                         |       |
