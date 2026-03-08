@@ -17,7 +17,7 @@ This document tracks the implementation status of packets in VoxelBridge.
 | :--- | :--- | :--- | :--- | :--- |
 | 0x00 | Keep Alive | Implemented | `JavaKeepAliveTranslator` | |
 | 0x01 | Join Game | Implemented | `JavaLoginTranslator` | Translates to LCE Login + SetTime |
-| 0x02 | Chat Message | Missing | — | |
+| 0x02 | Chat Message | Partial | `JavaChatTranslator` | Missing translation keys and formatting | |
 | 0x03 | Time Update | Implemented | `JavaUpdateTimeTranslator` | |
 | 0x04 | Entity Equipment | Missing | — | |
 | 0x05 | Spawn Position | Implemented | `JavaSpawnPositionTranslator` | |
@@ -92,7 +92,7 @@ This document tracks the implementation status of packets in VoxelBridge.
 | 0x00 | Keep Alive | Implemented | `LceKeepAliveTranslator` | |
 | 0x01 | Login | Implemented | `LceLoginTranslator` | |
 | 0x02 | Pre-Login | Implemented | `LcePreLoginTranslator` | |
-| 0x03 | Chat | Missing | — | |
+| 0x03 | Chat | Implemented | `LceChatTranslator` | |
 | 0x04 | Set Time | Missing | — | |
 | 0x05 | Set Equipped Item | Missing | — | |
 | 0x06 | Set Spawn Position | Missing | — | |

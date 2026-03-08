@@ -34,6 +34,7 @@ public class TranslatorRegistry {
         serverbound.put(0x0C, new LceMovePlayerRotationTranslator());
         serverbound.put(0x0D, new LceMovePlayerPositionRotationTranslator());
         serverbound.put(0xCD, new LceClientCommandTranslator());
+        serverbound.put(0x03, new LceChatTranslator());
 
         // Clientbound LOGIN: Java -> LCE
         // After the login-state success packet, state transitions to PLAY so the play-state login packet is decoded in PLAY
@@ -53,6 +54,7 @@ public class TranslatorRegistry {
         clientbound.get(ConnectionState.PLAY).put(0x21, new JavaMapChunkTranslator());
         clientbound.get(ConnectionState.PLAY).put(0x26, new JavaMapChunkBulkTranslator());
         clientbound.get(ConnectionState.PLAY).put(0x07, new JavaRespawnTranslator());
+        clientbound.get(ConnectionState.PLAY).put(0x02, new JavaChatTranslator());
     }
 
     @SuppressWarnings("unchecked")
