@@ -103,7 +103,7 @@ This document tracks the implementation status of packets in VoxelBridge.
 | 0x0B      | Move Player Position                | Implemented | `LceMovePlayerPositionTranslator`         |       |
 | 0x0C      | Move Player Rotation                | Implemented | `LceMovePlayerRotationTranslator`         |       |
 | 0x0D      | Move Player Position Rotation       | Implemented | `LceMovePlayerPositionRotationTranslator` |       |
-| 0x0E      | Player Action                       | Missing     | —                                         |       |
+| 0x0E      | Player Action                       | Implemented | `LcePlayerActionPacket`                   |       |
 | 0x0F      | Use Item                            | Missing     | —                                         |       |
 | 0x10      | Set Carried Item                    | Missing     | —                                         |       |
 | 0x11      | Entity Action At Position           | Missing     | —                                         |       |
