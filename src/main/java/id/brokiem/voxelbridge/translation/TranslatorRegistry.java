@@ -56,6 +56,7 @@ public class TranslatorRegistry {
         clientbound.get(ConnectionState.PLAY).put(0x07, new JavaRespawnTranslator());
         clientbound.get(ConnectionState.PLAY).put(0x02, new JavaChatTranslator());
         clientbound.get(ConnectionState.PLAY).put(0x0F, new JavaSpawnEntityLivingTranslator());
+        clientbound.get(ConnectionState.PLAY).put(0x0c, new JavaNamedEntitySpawnTranslator());
     }
 
     @SuppressWarnings("unchecked")

@@ -27,7 +27,7 @@ This document tracks the implementation status of packets in VoxelBridge.
 | 0x09      | Held Item Change              | Implemented | `JavaHeldItemSlotTranslator`      |                                         |
 | 0x0A      | Use Bed                       | Missing     | —                                 |                                         |
 | 0x0B      | Animation                     | Missing     | —                                 |                                         |
-| 0x0C      | Spawn Player                  | Missing     | —                                 |                                         |
+| 0x0C      | Spawn Player                  | Implemented | `JavaNamedEntitySpawnTranslator`  |                                         |
 | 0x0D      | Collect Item                  | Missing     | —                                 |                                         |
 | 0x0E      | Spawn Object                  | Missing     | —                                 |                                         |
 | 0x0F      | Spawn Mob                     | Implemented | `JavaSpawnEntityLivingTranslator` |                                         |
@@ -109,7 +109,7 @@ This document tracks the implementation status of packets in VoxelBridge.
 | 0x11      | Entity Action At Position           | Missing     | —                                         |       |
 | 0x12      | Animate                             | Missing     | —                                         |       |
 | 0x13      | Player Command                      | Missing     | —                                         |       |
-| 0x14      | Add Player                          | Missing     | —                                         |       |
+| 0x14      | Add Player                          | Implemented | —                                         |       |
 | 0x16      | Take Item Entity                    | Missing     | —                                         |       |
 | 0x17      | Add Entity                          | Missing     | —                                         |       |
 | 0x18      | Add Mob                             | Implemented | —                                         |       |
