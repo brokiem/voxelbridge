@@ -29,7 +29,7 @@ public class TranslatorRegistry {
         serverbound.put(0x00, new LceKeepAliveTranslator());
         serverbound.put(0x01, new LceLoginTranslator(config));
         serverbound.put(0x02, new LcePreLoginTranslator(config));
-        serverbound.put(0x0A, new LceMovePlayerTranslator());
+        //serverbound.put(0x0A, new LceMovePlayerTranslator()); // not needed
         serverbound.put(0x0B, new LceMovePlayerPositionTranslator());
         serverbound.put(0x0C, new LceMovePlayerRotationTranslator());
         serverbound.put(0x0D, new LceMovePlayerPositionRotationTranslator());
