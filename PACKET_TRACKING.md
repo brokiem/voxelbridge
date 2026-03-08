@@ -96,7 +96,7 @@ This document tracks the implementation status of packets in VoxelBridge.
 | 0x04      | Set Time                            | Missing     | —                                         |       |
 | 0x05      | Set Equipped Item                   | Missing     | —                                         |       |
 | 0x06      | Set Spawn Position                  | Missing     | —                                         |       |
-| 0x07      | Interact                            | Missing     | —                                         |       |
+| 0x07      | Interact                            | Implemented | `LceInteractTranslator`                   |       |
 | 0x08      | Set Health                          | Missing     | —                                         |       |
 | 0x09      | Respawn                             | Missing     | —                                         |       |
 | 0x0A      | Move Player                         | Implemented | `LceMovePlayerTranslator`                 |       |

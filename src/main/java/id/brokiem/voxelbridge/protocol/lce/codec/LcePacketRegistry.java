@@ -14,6 +14,7 @@ public final class LcePacketRegistry {
         registry.register(0x02, LcePreLoginPacket::new);
         registry.register(0x04, LceSetTimePacket::new);
         registry.register(0x06, LceSetSpawnPositionPacket::new);
+        registry.register(0x07, LceInteractPacket::new);
         registry.register(0x08, LceSetHealthPacket::new);
         registry.register(0x0A, LceMovePlayerPacket::new);
         registry.register(0x0B, LceMovePlayerPositionPacket::new);
