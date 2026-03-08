@@ -27,6 +27,7 @@ public final class LcePacketRegistry {
         registry.register(0xCD, LceClientCommandPacket::new);
         registry.register(0x09, LceRespawnPacket::new);
         registry.register(0x03, LceChatPacket::new);
+        registry.register(0x18, LceAddMobPacket::new);
         return registry;
     }
 }
