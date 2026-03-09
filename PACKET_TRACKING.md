@@ -44,7 +44,7 @@ This document tracks the implementation status of packets in VoxelBridge.
 | 0x19      | Entity Head Look              | Implemented | `JavaEntityHeadLookTranslator`    |                                         |
 | 0x1A      | Entity Status                 | Missing     | —                                 |                                         |
 | 0x1B      | Attach Entity                 | Missing     | —                                 |                                         |
-| 0x1C      | Entity Metadata               | Missing     | —                                 |                                         |
+| 0x1C      | Entity Metadata               | Implemented | `JavaEntityMetadataTranslator`    |                                         |
 | 0x1D      | Entity Effect                 | Missing     | —                                 |                                         |
 | 0x1E      | Remove Entity Effect          | Missing     | —                                 |                                         |
 | 0x1F      | Set Experience                | Missing     | —                                 |                                         |
@@ -127,7 +127,7 @@ This document tracks the implementation status of packets in VoxelBridge.
 | 0x23      | Rotate Head                         | Implemented | —                                         |       |
 | 0x26      | Entity Event                        | Missing     | —                                         |       |
 | 0x27      | Set Entity Link                     | Missing     | —                                         |       |
-| 0x28      | Set Entity Data                     | Missing     | —                                         |       |
+| 0x28      | Set Entity Data                     | Implemented | —                                         |       |
 | 0x29      | Update Mob Effect                   | Missing     | —                                         |       |
 | 0x2A      | Remove Mob Effect                   | Missing     | —                                         |       |
 | 0x2B      | Set Experience                      | Missing     | —                                         |       |
