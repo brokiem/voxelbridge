@@ -47,7 +47,7 @@ This document tracks the implementation status of packets in VoxelBridge.
 | 0x1C      | Entity Metadata               | Implemented | `JavaEntityMetadataTranslator`    |                                         |
 | 0x1D      | Entity Effect                 | Missing     | —                                 |                                         |
 | 0x1E      | Remove Entity Effect          | Missing     | —                                 |                                         |
-| 0x1F      | Set Experience                | Missing     | —                                 |                                         |
+| 0x1F      | Set Experience                | Implemented | `JavaExperienceTranslator`        |                                         |
 | 0x20      | Entity Properties             | Missing     | —                                 |                                         |
 | 0x21      | Chunk Data                    | Implemented | `JavaMapChunkTranslator`          |                                         |
 | 0x22      | Multi Block Change            | Missing     | —                                 |                                         |
@@ -130,7 +130,7 @@ This document tracks the implementation status of packets in VoxelBridge.
 | 0x28      | Set Entity Data                     | Implemented | —                                         |       |
 | 0x29      | Update Mob Effect                   | Missing     | —                                         |       |
 | 0x2A      | Remove Mob Effect                   | Missing     | —                                         |       |
-| 0x2B      | Set Experience                      | Missing     | —                                         |       |
+| 0x2B      | Set Experience                      | Implemented | —                                         |       |
 | 0x2C      | Update Attributes                   | Missing     | —                                         |       |
 | 0x32      | Chunk Visibility                    | Implemented | —                                         |       |
 | 0x33      | Block Region Update                 | Implemented | —                                         |       |

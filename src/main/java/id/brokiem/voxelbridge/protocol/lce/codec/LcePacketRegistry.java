@@ -42,6 +42,7 @@ public final class LcePacketRegistry {
         registry.register(0x18, LceAddMobPacket::new);
         registry.register(0x14, LceAddPlayerPacket::new);
         registry.register(0x28, LceSetEntityDataPacket::new);
+        registry.register(0x2B, LceSetExperiencePacket::new);
         return registry;
     }
 }
