@@ -34,7 +34,7 @@ This document tracks the implementation status of packets in VoxelBridge.
 | 0x10      | Spawn Painting                | Missing     | —                                 |                                         |
 | 0x11      | Spawn Experience Orb          | Missing     | —                                 |                                         |
 | 0x12      | Entity Velocity               | Missing     | —                                 |                                         |
-| 0x13      | Destroy Entities              | Missing     | —                                 |                                         |
+| 0x13      | Destroy Entities              | Implemented | `JavaDestroyEntitiesTranslator`   |                                         |
 | 0x14      | Entity                        | Implemented | `JavaEntityTranslator`            |                                         |
 | 0x15      | Entity Relative Move          | Implemented | `JavaRelEntityMoveTranslator`     |                                         |
 | 0x16      | Entity Look                   | Implemented | `JavaEntityLookTranslator`        |                                         |
@@ -117,7 +117,7 @@ This document tracks the implementation status of packets in VoxelBridge.
 | 0x1A      | Add Experience Orb                  | Missing     | —                                         |       |
 | 0x1B      | Player Input                        | Missing     | —                                         |       |
 | 0x1C      | Set Entity Motion                   | Missing     | —                                         |       |
-| 0x1D      | Remove Entities                     | Missing     | —                                         |       |
+| 0x1D      | Remove Entities                     | Implemented | —                                         |       |
 | 0x1E      | Move Entity                         | Implemented | —                                         |       |
 | 0x1F      | Move Entity Position                | Implemented | —                                         |       |
 | 0x20      | Move Entity Rotation                | Implemented | —                                         |       |
@@ -134,7 +134,7 @@ This document tracks the implementation status of packets in VoxelBridge.
 | 0x32      | Chunk Visibility                    | Missing     | —                                         |       |
 | 0x33      | Block Region Update                 | Missing     | —                                         |       |
 | 0x34      | Chunk Tiles Update                  | Missing     | —                                         |       |
-| 0x35      | Tile Update                         | Implemented | `JavaBlockChangeTranslator`               |       |
+| 0x35      | Tile Update                         | Implemented | —                                         |       |
 | 0x36      | Tile Event                          | Missing     | —                                         |       |
 | 0x37      | Tile Destruction                    | Missing     | —                                         |       |
 | 0x3C      | Explode                             | Missing     | —                                         |       |
