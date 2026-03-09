@@ -44,6 +44,7 @@ public final class LcePacketRegistry {
         registry.register(0x28, LceSetEntityDataPacket::new);
         registry.register(0x2B, LceSetExperiencePacket::new);
         registry.register(0x22, LceTeleportEntityPacket::new);
+        registry.register(0x0F, LceUseItemPacket::new);
         return registry;
     }
 }
