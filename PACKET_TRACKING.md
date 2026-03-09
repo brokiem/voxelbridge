@@ -94,7 +94,7 @@ This document tracks the implementation status of packets in VoxelBridge.
 | 0x01      | Login                               | Implemented | `LceLoginTranslator`                      |       |
 | 0x02      | Pre-Login                           | Implemented | `LcePreLoginTranslator`                   |       |
 | 0x03      | Chat                                | Implemented | `LceChatTranslator`                       |       |
-| 0x04      | Set Time                            | Missing     | —                                         |       |
+| 0x04      | Set Time                            | Implemented | —                                         |       |
 | 0x05      | Set Equipped Item                   | Missing     | —                                         |       |
 | 0x06      | Set Spawn Position                  | Missing     | —                                         |       |
 | 0x07      | Interact                            | Implemented | `LceInteractTranslator`                   |       |
