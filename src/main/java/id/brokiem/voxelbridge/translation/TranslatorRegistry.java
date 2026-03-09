@@ -38,6 +38,7 @@ public class TranslatorRegistry {
         serverbound.put(0x07, new LceInteractTranslator());
         serverbound.put(0x0E, new LcePlayerActionTranslator());
         serverbound.put(0x12, new LceAnimateTranslator());
+        serverbound.put(0x10, new LceSetCarriedItemTranslator());
 
         // Clientbound LOGIN: Java -> LCE
         // After the login-state success packet, state transitions to PLAY so the play-state login packet is decoded in PLAY
