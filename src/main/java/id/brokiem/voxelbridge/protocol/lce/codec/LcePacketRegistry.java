@@ -24,6 +24,7 @@ public final class LcePacketRegistry {
         registry.register(0x10, LceSetCarriedItemPacket::new);
         registry.register(0x12, LceAnimatePacket::new);
         registry.register(0x16, LceTakeItemEntityPacket::new);
+        registry.register(0x17, LceAddEntityPacket::new);
         registry.register(0x1D, LceRemoveEntitiesPacket::new);
         registry.register(0x1E, LceMoveEntityPacket::new);
         registry.register(0x1F, LceMoveEntityPositionPacket::new);

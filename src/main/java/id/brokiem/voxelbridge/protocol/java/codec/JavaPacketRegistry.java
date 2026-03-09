@@ -32,6 +32,7 @@ public final class JavaPacketRegistry {
         play.register(0x06, JavaClientboundUpdateHealthPacket::new);
         play.register(0x08, JavaClientboundPositionPacket::new);
         play.register(0x09, JavaClientboundHeldItemSlotPacket::new);
+        play.register(0x0E, JavaClientboundSpawnEntityPacket::new);
         play.register(0x13, JavaClientboundDestroyEntitiesPacket::new);
         play.register(0x39, JavaClientboundAbilitiesPacket::new);
         play.register(0x40, JavaClientboundKickDisconnectPacket::new);

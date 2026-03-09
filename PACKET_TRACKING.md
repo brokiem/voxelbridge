@@ -3,9 +3,10 @@
 This document tracks the implementation status of packets in VoxelBridge.
 
 **Status Legend:**
-*   **Implemented**: Packet class exists, translator exists, and is registered.
-*   **Partial**: Packet class exists but translator is missing or incomplete.
-*   **Missing**: Packet is not implemented.
+
+* **Implemented**: Packet class exists, translator exists, and is registered.
+* **Partial**: Packet class exists but translator is missing or incomplete.
+* **Missing**: Packet is not implemented.
 
 ---
 
@@ -29,7 +30,7 @@ This document tracks the implementation status of packets in VoxelBridge.
 | 0x0B      | Animation                     | Missing     | —                                 |                                         |
 | 0x0C      | Spawn Player                  | Implemented | `JavaNamedEntitySpawnTranslator`  |                                         |
 | 0x0D      | Collect Item                  | Implemented | `JavaCollectItemTranslator`       |                                         |
-| 0x0E      | Spawn Object                  | Missing     | —                                 |                                         |
+| 0x0E      | Spawn Object                  | Implemented | `JavaSpawnEntityTranslator`       |                                         |
 | 0x0F      | Spawn Mob                     | Implemented | `JavaSpawnEntityLivingTranslator` |                                         |
 | 0x10      | Spawn Painting                | Missing     | —                                 |                                         |
 | 0x11      | Spawn Experience Orb          | Missing     | —                                 |                                         |
@@ -111,7 +112,7 @@ This document tracks the implementation status of packets in VoxelBridge.
 | 0x13      | Player Command                      | Missing     | —                                         |       |
 | 0x14      | Add Player                          | Implemented | —                                         |       |
 | 0x16      | Take Item Entity                    | Implemented | —                                         |       |
-| 0x17      | Add Entity                          | Missing     | —                                         |       |
+| 0x17      | Add Entity                          | Implemented | —                                         |       |
 | 0x18      | Add Mob                             | Implemented | —                                         |       |
 | 0x19      | Add Painting                        | Missing     | —                                         |       |
 | 0x1A      | Add Experience Orb                  | Missing     | —                                         |       |

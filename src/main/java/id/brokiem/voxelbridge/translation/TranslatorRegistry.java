@@ -52,6 +52,7 @@ public class TranslatorRegistry {
         clientbound.get(ConnectionState.PLAY).put(0x06, new JavaUpdateHealthTranslator());
         clientbound.get(ConnectionState.PLAY).put(0x08, new JavaPositionTranslator());
         clientbound.get(ConnectionState.PLAY).put(0x09, new JavaHeldItemSlotTranslator());
+        clientbound.get(ConnectionState.PLAY).put(0x0E, new JavaSpawnEntityTranslator());
         clientbound.get(ConnectionState.PLAY).put(0x13, new JavaDestroyEntitiesTranslator());
         clientbound.get(ConnectionState.PLAY).put(0x39, new JavaAbilitiesTranslator());
         clientbound.get(ConnectionState.PLAY).put(0x40, new JavaKickDisconnectTranslator());
