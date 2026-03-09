@@ -22,12 +22,14 @@ public final class LcePacketRegistry {
         registry.register(0x0D, LceMovePlayerPositionRotationPacket::new);
         registry.register(0x0E, LcePlayerActionPacket::new);
         registry.register(0x10, LceSetCarriedItemPacket::new);
+        registry.register(0x12, LceAnimatePacket::new);
         registry.register(0x16, LceTakeItemEntityPacket::new);
         registry.register(0x1E, LceMoveEntityPacket::new);
         registry.register(0x1F, LceMoveEntityPositionPacket::new);
         registry.register(0x20, LceMoveEntityRotationPacket::new);
         registry.register(0x21, LceMoveEntityPositionRotationPacket::new);
         registry.register(0x23, LceRotateHeadPacket::new);
+        registry.register(0x35, LceTileUpdatePacket::new);
         registry.register(0xCA, LcePlayerAbilitiesPacket::new);
         registry.register(0xFF, LceDisconnectPacket::new);
         registry.register(0x32, LceChunkVisibilityPacket::new);
@@ -37,7 +39,6 @@ public final class LcePacketRegistry {
         registry.register(0x03, LceChatPacket::new);
         registry.register(0x18, LceAddMobPacket::new);
         registry.register(0x14, LceAddPlayerPacket::new);
-        registry.register(0x12, LceAnimatePacket::new);
         return registry;
     }
 }

@@ -50,7 +50,7 @@ This document tracks the implementation status of packets in VoxelBridge.
 | 0x20      | Entity Properties             | Missing     | —                                 |                                         |
 | 0x21      | Chunk Data                    | Implemented | `JavaMapChunkTranslator`          |                                         |
 | 0x22      | Multi Block Change            | Missing     | —                                 |                                         |
-| 0x23      | Block Change                  | Missing     | —                                 |                                         |
+| 0x23      | Block Change                  | Implemented | `JavaBlockChangeTranslator`       |                                         |
 | 0x24      | Block Action                  | Missing     | —                                 |                                         |
 | 0x25      | Block Break Animation         | Missing     | —                                 |                                         |
 | 0x26      | Map Chunk Bulk                | Implemented | `JavaMapChunkBulkTranslator`      |                                         |
@@ -103,7 +103,7 @@ This document tracks the implementation status of packets in VoxelBridge.
 | 0x0B      | Move Player Position                | Implemented | `LceMovePlayerPositionTranslator`         |       |
 | 0x0C      | Move Player Rotation                | Implemented | `LceMovePlayerRotationTranslator`         |       |
 | 0x0D      | Move Player Position Rotation       | Implemented | `LceMovePlayerPositionRotationTranslator` |       |
-| 0x0E      | Player Action                       | Implemented | `LcePlayerActionPacket`                   |       |
+| 0x0E      | Player Action                       | Implemented | `LcePlayerActionTranslator`               |       |
 | 0x0F      | Use Item                            | Missing     | —                                         |       |
 | 0x10      | Set Carried Item                    | Missing     | —                                         |       |
 | 0x11      | Entity Action At Position           | Missing     | —                                         |       |
@@ -134,7 +134,7 @@ This document tracks the implementation status of packets in VoxelBridge.
 | 0x32      | Chunk Visibility                    | Missing     | —                                         |       |
 | 0x33      | Block Region Update                 | Missing     | —                                         |       |
 | 0x34      | Chunk Tiles Update                  | Missing     | —                                         |       |
-| 0x35      | Tile Update                         | Missing     | —                                         |       |
+| 0x35      | Tile Update                         | Implemented | `JavaBlockChangeTranslator`               |       |
 | 0x36      | Tile Event                          | Missing     | —                                         |       |
 | 0x37      | Tile Destruction                    | Missing     | —                                         |       |
 | 0x3C      | Explode                             | Missing     | —                                         |       |
