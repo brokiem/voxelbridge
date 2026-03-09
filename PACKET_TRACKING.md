@@ -132,8 +132,8 @@ This document tracks the implementation status of packets in VoxelBridge.
 | 0x2A      | Remove Mob Effect                   | Missing     | —                                         |       |
 | 0x2B      | Set Experience                      | Missing     | —                                         |       |
 | 0x2C      | Update Attributes                   | Missing     | —                                         |       |
-| 0x32      | Chunk Visibility                    | Missing     | —                                         |       |
-| 0x33      | Block Region Update                 | Missing     | —                                         |       |
+| 0x32      | Chunk Visibility                    | Implemented | —                                         |       |
+| 0x33      | Block Region Update                 | Implemented | —                                         |       |
 | 0x34      | Chunk Tiles Update                  | Missing     | —                                         |       |
 | 0x35      | Tile Update                         | Implemented | —                                         |       |
 | 0x36      | Tile Event                          | Missing     | —                                         |       |
@@ -162,7 +162,7 @@ This document tracks the implementation status of packets in VoxelBridge.
 | 0x98      | Debug Options                       | Missing     | —                                         |       |
 | 0x99      | Server Settings Changed             | Missing     | —                                         |       |
 | 0x9A      | Texture                             | Missing     | —                                         |       |
-| 0x9B      | Chunk Visibility Area               | Missing     | —                                         |       |
+| 0x9B      | Chunk Visibility Area               | Implemented | —                                         |       |
 | 0x9C      | Update Progress                     | Missing     | —                                         |       |
 | 0x9D      | Texture Change                      | Missing     | —                                         |       |
 | 0x9E      | Update Game Rule Progress           | Missing     | —                                         |       |
