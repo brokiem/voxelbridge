@@ -51,6 +51,7 @@ public final class JavaPacketRegistry {
         play.register(0x23, JavaClientboundBlockChangePacket::new);
         play.register(0x1C, JavaClientboundEntityMetadataPacket::new);
         play.register(0x1F, JavaClientboundExperiencePacket::new);
+        play.register(0x18, JavaClientboundEntityTeleportPacket::new);
         jpr.stateRegistries.put(ConnectionState.PLAY, play);
 
         return jpr;

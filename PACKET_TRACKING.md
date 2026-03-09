@@ -40,7 +40,7 @@ This document tracks the implementation status of packets in VoxelBridge.
 | 0x15      | Entity Relative Move          | Implemented | `JavaRelEntityMoveTranslator`     |                                         |
 | 0x16      | Entity Look                   | Implemented | `JavaEntityLookTranslator`        |                                         |
 | 0x17      | Entity Look and Relative Move | Implemented | `JavaEntityMoveLookTranslator`    |                                         |
-| 0x18      | Entity Teleport               | Missing     | —                                 |                                         |
+| 0x18      | Entity Teleport               | Implemented | `JavaEntityTeleportTranslator`    |                                         |
 | 0x19      | Entity Head Look              | Implemented | `JavaEntityHeadLookTranslator`    |                                         |
 | 0x1A      | Entity Status                 | Missing     | —                                 |                                         |
 | 0x1B      | Attach Entity                 | Missing     | —                                 |                                         |
@@ -123,7 +123,7 @@ This document tracks the implementation status of packets in VoxelBridge.
 | 0x1F      | Move Entity Position                | Implemented | —                                         |       |
 | 0x20      | Move Entity Rotation                | Implemented | —                                         |       |
 | 0x21      | Move Entity Position Rotation       | Implemented | —                                         |       |
-| 0x22      | Teleport Entity                     | Missing     | —                                         |       |
+| 0x22      | Teleport Entity                     | Implemented | —                                         |       |
 | 0x23      | Rotate Head                         | Implemented | —                                         |       |
 | 0x26      | Entity Event                        | Missing     | —                                         |       |
 | 0x27      | Set Entity Link                     | Missing     | —                                         |       |
