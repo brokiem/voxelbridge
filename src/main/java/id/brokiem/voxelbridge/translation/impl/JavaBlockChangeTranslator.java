@@ -10,7 +10,7 @@ public class JavaBlockChangeTranslator implements ClientboundTranslator<JavaClie
     @Override
     public TranslationResult translate(JavaClientboundBlockChangePacket input, Session session) {
         int blockId = input.getBlockId();
-        if (blockId <= 160 || (blockId >= 170 && blockId <= 173)) {
+        if (!(blockId <= 160 || (blockId >= 170 && blockId <= 173))) {
             blockId = 1;
         }
 
