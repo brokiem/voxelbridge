@@ -68,9 +68,12 @@ Please report bugs in the **Issues** tab.
 
 If you are able to fix the issue yourself, feel free to submit a pull request.
 
-## Compatibility Notes
+[//]: # (## Compatibility Notes)
 
-Some server-side anticheat plugins may flag players connected through the proxy.  
-This can happen if the translation layer sends slightly incorrect or incomplete packets due to unfinished or incorrect implementations.
+[//]: # ()
+[//]: # (Some server-side anticheat plugins may flag players connected through the proxy.  )
 
-If you encounter anticheat-related problems while using VoxelBridge, please open an issue so the behavior can be investigated and improved.
+[//]: # (This can happen if the translation layer sends slightly incorrect or incomplete packets due to unfinished or incorrect implementations.)
+
+[//]: # ()
+[//]: # (If you encounter anticheat-related problems while using VoxelBridge, please open an issue so the behavior can be investigated and improved.)
