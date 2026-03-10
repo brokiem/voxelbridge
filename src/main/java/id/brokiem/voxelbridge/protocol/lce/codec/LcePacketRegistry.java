@@ -13,6 +13,7 @@ public final class LcePacketRegistry {
         registry.register(0x01, LceLoginPacket::new);
         registry.register(0x02, LcePreLoginPacket::new);
         registry.register(0x04, LceSetTimePacket::new);
+        registry.register(0x05, LceSetEquippedItemPacket::new);
         registry.register(0x06, LceSetSpawnPositionPacket::new);
         registry.register(0x07, LceInteractPacket::new);
         registry.register(0x08, LceSetHealthPacket::new);
@@ -45,6 +46,14 @@ public final class LcePacketRegistry {
         registry.register(0x2B, LceSetExperiencePacket::new);
         registry.register(0x22, LceTeleportEntityPacket::new);
         registry.register(0x0F, LceUseItemPacket::new);
+        registry.register(0x64, LceContainerOpenPacket::new);
+        registry.register(0x65, LceContainerClosePacket::new);
+        registry.register(0x66, LceContainerClickPacket::new);
+        registry.register(0x67, LceContainerSetSlotPacket::new);
+        registry.register(0x68, LceContainerSetContentPacket::new);
+        registry.register(0x69, LceContainerSetDataPacket::new);
+        registry.register(0x6A, LceContainerAckPacket::new);
+        registry.register(0x6B, LceSetCreativeModeSlotPacket::new);
         return registry;
     }
 }

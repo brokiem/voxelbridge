@@ -28,6 +28,7 @@ public final class JavaPacketRegistry {
         play.register(0x00, JavaClientboundKeepAlivePacket::new);
         play.register(0x01, JavaClientboundLoginPacket::new);
         play.register(0x03, JavaClientboundUpdateTimePacket::new);
+        play.register(0x04, JavaClientboundEntityEquipmentPacket::new);
         play.register(0x05, JavaClientboundSpawnPositionPacket::new);
         play.register(0x06, JavaClientboundUpdateHealthPacket::new);
         play.register(0x08, JavaClientboundPositionPacket::new);
@@ -52,6 +53,12 @@ public final class JavaPacketRegistry {
         play.register(0x1C, JavaClientboundEntityMetadataPacket::new);
         play.register(0x1F, JavaClientboundExperiencePacket::new);
         play.register(0x18, JavaClientboundEntityTeleportPacket::new);
+        play.register(0x2D, JavaClientboundOpenWindowPacket::new);
+        play.register(0x2E, JavaClientboundCloseWindowPacket::new);
+        play.register(0x2F, JavaClientboundSetSlotPacket::new);
+        play.register(0x30, JavaClientboundWindowItemsPacket::new);
+        play.register(0x31, JavaClientboundCraftProgressBarPacket::new);
+        play.register(0x32, JavaClientboundTransactionPacket::new);
         jpr.stateRegistries.put(ConnectionState.PLAY, play);
 
         return jpr;

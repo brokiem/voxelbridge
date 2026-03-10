@@ -20,7 +20,7 @@ This document tracks the implementation status of packets in VoxelBridge.
 | 0x01      | Join Game                     | 🟢     | `JavaLoginTranslator`             | Translates to LCE Login + SetTime       |
 | 0x02      | Chat Message                  | 🟠     | `JavaChatTranslator`              | Missing translation keys and formatting |
 | 0x03      | Time Update                   | 🟢     | `JavaUpdateTimeTranslator`        |                                         |
-| 0x04      | Entity Equipment              | 🟡     | —                                 |                                         |
+| 0x04      | Entity Equipment              | 🟢     | `JavaEntityEquipmentTranslator`   |                                         |
 | 0x05      | Spawn Position                | 🟢     | `JavaSpawnPositionTranslator`     |                                         |
 | 0x06      | Update Health                 | 🟢     | `JavaUpdateHealthTranslator`      |                                         |
 | 0x07      | Respawn                       | 🟢     | `JavaRespawnTranslator`           |                                         |
@@ -61,12 +61,12 @@ This document tracks the implementation status of packets in VoxelBridge.
 | 0x2A      | Particle                      | 🟡     | —                                 |                                         |
 | 0x2B      | Change Game State             | 🟡     | —                                 |                                         |
 | 0x2C      | Spawn Global Entity           | 🟡     | —                                 |                                         |
-| 0x2D      | Open Window                   | 🟡     | —                                 |                                         |
-| 0x2E      | Close Window                  | 🟡     | —                                 |                                         |
-| 0x2F      | Set Slot                      | 🟡     | —                                 |                                         |
-| 0x30      | Window Items                  | 🟡     | —                                 |                                         |
-| 0x31      | Window Property               | 🟡     | —                                 |                                         |
-| 0x32      | Confirm Transaction           | 🟡     | —                                 |                                         |
+| 0x2D      | Open Window                   | 🟢     | `JavaOpenWindowTranslator`        |                                         |
+| 0x2E      | Close Window                  | 🟢     | `JavaCloseWindowTranslator`       |                                         |
+| 0x2F      | Set Slot                      | 🟢     | `JavaSetSlotTranslator`           |                                         |
+| 0x30      | Window Items                  | 🟢     | `JavaWindowItemsTranslator`       |                                         |
+| 0x31      | Window Property               | 🟢     | `JavaCraftProgressBarTranslator`  |                                         |
+| 0x32      | Confirm Transaction           | 🟢     | `JavaTransactionTranslator`       |                                         |
 | 0x33      | Update Sign                   | 🟡     | —                                 |                                         |
 | 0x34      | Maps                          | 🟡     | —                                 |                                         |
 | 0x35      | Update Block Entity           | 🟡     | —                                 |                                         |
@@ -95,7 +95,7 @@ This document tracks the implementation status of packets in VoxelBridge.
 | 0x02      | Pre-Login                           | 🟢     | `LcePreLoginTranslator`                   |       |
 | 0x03      | Chat                                | 🟢     | `LceChatTranslator`                       |       |
 | 0x04      | Set Time                            | 🟢     | —                                         |       |
-| 0x05      | Set Equipped Item                   | 🟡     | —                                         |       |
+| 0x05      | Set Equipped Item                   | 🟠     | —                                         |       |
 | 0x06      | Set Spawn Position                  | 🟡     | —                                         |       |
 | 0x07      | Interact                            | 🟢     | `LceInteractTranslator`                   |       |
 | 0x08      | Set Health                          | 🟢     | —                                         |       |
@@ -105,7 +105,7 @@ This document tracks the implementation status of packets in VoxelBridge.
 | 0x0C      | Move Player Rotation                | 🟢     | `LceMovePlayerRotationTranslator`         |       |
 | 0x0D      | Move Player Position Rotation       | 🟢     | `LceMovePlayerPositionRotationTranslator` |       |
 | 0x0E      | Player Action                       | 🟢     | `LcePlayerActionTranslator`               |       |
-| 0x0F      | Use Item                            | 🟢     | `LceUseItemPacket`                        |       |
+| 0x0F      | Use Item                            | 🟢     | `LceUseItemTranslator`                    |       |
 | 0x10      | Set Carried Item                    | 🟢     | `LceSetCarriedItemTranslator`             |       |
 | 0x11      | Entity Action At Position           | 🟡     | —                                         |       |
 | 0x12      | Animate                             | 🟢     | `LceAnimateTranslator`                    |       |
@@ -144,14 +144,14 @@ This document tracks the implementation status of packets in VoxelBridge.
 | 0x3F      | Level Particles                     | 🟡     | —                                         |       |
 | 0x46      | Game Event                          | 🟡     | —                                         |       |
 | 0x47      | Add Global Entity                   | 🟡     | —                                         |       |
-| 0x64      | Container Open                      | 🟡     | —                                         |       |
-| 0x65      | Container Close                     | 🟡     | —                                         |       |
-| 0x66      | Container Click                     | 🟡     | —                                         |       |
-| 0x67      | Container Set Slot                  | 🟡     | —                                         |       |
-| 0x68      | Container Set Content               | 🟡     | —                                         |       |
-| 0x69      | Container Set Data                  | 🟡     | —                                         |       |
-| 0x6A      | Container Ack                       | 🟡     | —                                         |       |
-| 0x6B      | Set Creative Mode Slot              | 🟡     | —                                         |       |
+| 0x64      | Container Open                      | 🟠     | —                                         | No-op |
+| 0x65      | Container Close                     | 🟢     | `LceContainerCloseTranslator`             |       |
+| 0x66      | Container Click                     | 🟢     | `LceContainerClickTranslator`             |       |
+| 0x67      | Container Set Slot                  | 🟠     | —                                         | No-op |
+| 0x68      | Container Set Content               | 🟠     | —                                         | No-op |
+| 0x69      | Container Set Data                  | 🟠     | —                                         | No-op |
+| 0x6A      | Container Ack                       | 🟢     | `LceContainerAckTranslator`               |       |
+| 0x6B      | Set Creative Mode Slot              | 🟢     | `LceSetCreativeModeSlotTranslator`        |       |
 | 0x6C      | Container Button Click              | 🟡     | —                                         |       |
 | 0x82      | Sign Update                         | 🟡     | —                                         |       |
 | 0x83      | Complex Item Data                   | 🟡     | —                                         |       |

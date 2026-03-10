@@ -40,6 +40,10 @@ public class TranslatorRegistry {
         serverbound.put(0x12, new LceAnimateTranslator());
         serverbound.put(0x10, new LceSetCarriedItemTranslator());
         serverbound.put(0x0F, new LceUseItemTranslator());
+        serverbound.put(0x65, new LceContainerCloseTranslator());
+        serverbound.put(0x66, new LceContainerClickTranslator());
+        serverbound.put(0x6A, new LceContainerAckTranslator());
+        serverbound.put(0x6B, new LceSetCreativeModeSlotTranslator());
 
         // Clientbound LOGIN: Java -> LCE
         // After the login-state success packet, state transitions to PLAY so the play-state login packet is decoded in PLAY
@@ -50,6 +54,7 @@ public class TranslatorRegistry {
         clientbound.get(ConnectionState.PLAY).put(0x00, new JavaKeepAliveTranslator());
         clientbound.get(ConnectionState.PLAY).put(0x01, new JavaLoginTranslator(config));
         clientbound.get(ConnectionState.PLAY).put(0x03, new JavaUpdateTimeTranslator());
+        clientbound.get(ConnectionState.PLAY).put(0x04, new JavaEntityEquipmentTranslator());
         clientbound.get(ConnectionState.PLAY).put(0x05, new JavaSpawnPositionTranslator());
         clientbound.get(ConnectionState.PLAY).put(0x06, new JavaUpdateHealthTranslator());
         clientbound.get(ConnectionState.PLAY).put(0x08, new JavaPositionTranslator());
@@ -74,6 +79,12 @@ public class TranslatorRegistry {
         clientbound.get(ConnectionState.PLAY).put(0x1C, new JavaEntityMetadataTranslator());
         clientbound.get(ConnectionState.PLAY).put(0x1F, new JavaExperienceTranslator());
         clientbound.get(ConnectionState.PLAY).put(0x18, new JavaEntityTeleportTranslator());
+        clientbound.get(ConnectionState.PLAY).put(0x2D, new JavaOpenWindowTranslator());
+        clientbound.get(ConnectionState.PLAY).put(0x2E, new JavaCloseWindowTranslator());
+        clientbound.get(ConnectionState.PLAY).put(0x2F, new JavaSetSlotTranslator());
+        clientbound.get(ConnectionState.PLAY).put(0x30, new JavaWindowItemsTranslator());
+        clientbound.get(ConnectionState.PLAY).put(0x31, new JavaCraftProgressBarTranslator());
+        clientbound.get(ConnectionState.PLAY).put(0x32, new JavaTransactionTranslator());
     }
 
     @SuppressWarnings("unchecked")
