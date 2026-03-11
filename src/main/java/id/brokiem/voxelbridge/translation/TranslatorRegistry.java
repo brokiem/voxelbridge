@@ -64,6 +64,7 @@ public class TranslatorRegistry {
         clientbound.get(ConnectionState.PLAY).put(0x39, new JavaAbilitiesTranslator());
         clientbound.get(ConnectionState.PLAY).put(0x40, new JavaKickDisconnectTranslator());
         clientbound.get(ConnectionState.PLAY).put(0x21, new JavaMapChunkTranslator());
+        clientbound.get(ConnectionState.PLAY).put(0x22, new JavaMultiBlockChangeTranslator());
         clientbound.get(ConnectionState.PLAY).put(0x26, new JavaMapChunkBulkTranslator());
         clientbound.get(ConnectionState.PLAY).put(0x07, new JavaRespawnTranslator());
         clientbound.get(ConnectionState.PLAY).put(0x02, new JavaChatTranslator());

@@ -38,6 +38,7 @@ public final class JavaPacketRegistry {
         play.register(0x39, JavaClientboundAbilitiesPacket::new);
         play.register(0x40, JavaClientboundKickDisconnectPacket::new);
         play.register(0x21, JavaClientboundMapChunkPacket::new);
+        play.register(0x22, JavaClientboundMultiBlockChangePacket::new);
         play.register(0x26, JavaClientboundMapChunkBulkPacket::new);
         play.register(0x07, JavaClientboundRespawnPacket::new);
         play.register(0x02, JavaClientboundChatPacket::new);
