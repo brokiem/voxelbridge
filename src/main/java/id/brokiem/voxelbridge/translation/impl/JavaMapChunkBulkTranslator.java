@@ -65,7 +65,7 @@ public class JavaMapChunkBulkTranslator implements ClientboundTranslator<JavaCli
                 System.arraycopy(decompressedData, dataOffset, chunkSlice, 0, chunkDataSize);
                 dataOffset += chunkDataSize;
 
-                LceBlockRegionUpdatePacket chunkDataPacket = JavaMapChunkTranslator.buildConsoleChunk(chunkX[i], chunkZ[i], bitMap, addBitMap, true, chunkSlice, input.isSkyLightSent());
+                LceBlockRegionUpdatePacket chunkDataPacket = JavaMapChunkTranslator.buildFullConsoleChunk(chunkX[i], chunkZ[i], bitMap, addBitMap, chunkSlice, input.isSkyLightSent());
                 outputPackets.add(chunkDataPacket);
             }
 

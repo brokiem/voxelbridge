@@ -1,5 +1,6 @@
 package id.brokiem.voxelbridge.translation.impl;
 
+import id.brokiem.voxelbridge.protocol.Packet;
 import id.brokiem.voxelbridge.protocol.java.packets.play.JavaClientboundMapChunkPacket;
 import id.brokiem.voxelbridge.protocol.lce.packets.LceBlockRegionUpdatePacket;
 import id.brokiem.voxelbridge.protocol.lce.packets.LceChunkVisibilityPacket;
@@ -9,7 +10,6 @@ import id.brokiem.voxelbridge.translation.TranslationResult;
 import id.brokiem.voxelbridge.util.compression.ZlibUtil;
 import lombok.extern.slf4j.Slf4j;
 
-import java.io.ByteArrayOutputStream;
 import java.util.Arrays;
 import java.util.List;
 
@@ -40,16 +40,23 @@ public class JavaMapChunkTranslator implements ClientboundTranslator<JavaClientb
             visibility.setZ(input.getZ());
             visibility.setVisible(true);
 
-            LceBlockRegionUpdatePacket chunk = buildConsoleChunk(input.getX(), input.getZ(), input.getBitMap() & 0xFFFF, input.getAddBitMap() & 0xFFFF, input.isGroundUp(), decompressed, true);
-
-            return TranslationResult.toClient(List.of(visibility, chunk));
+            boolean skyLightSent = true;
+            if (input.isGroundUp()) {
+                LceBlockRegionUpdatePacket chunk = buildFullConsoleChunk(input.getX(), input.getZ(), input.getBitMap() & 0xFFFF, input.getAddBitMap() & 0xFFFF, decompressed, skyLightSent);
+                return TranslationResult.toClient(List.of(visibility, chunk));
+            } else {
+                List<Packet> packets = new java.util.ArrayList<>();
+                packets.add(visibility);
+                packets.addAll(buildPartialConsoleChunks(input.getX(), input.getZ(), input.getBitMap() & 0xFFFF, input.getAddBitMap() & 0xFFFF, decompressed, skyLightSent));
+                return TranslationResult.toClient(packets);
+            }
         } catch (Exception e) {
             log.warn("Error translating chunk at {},{}: {}", input.getX(), input.getZ(), e.getMessage());
             return TranslationResult.empty();
         }
     }
 
-    static LceBlockRegionUpdatePacket buildConsoleChunk(int chunkX, int chunkZ, int primaryBitMask, int addBitMask, boolean groundUp, byte[] decompressed, boolean skyLightSent) {
+    public static LceBlockRegionUpdatePacket buildFullConsoleChunk(int chunkX, int chunkZ, int primaryBitMask, int addBitMask, byte[] decompressed, boolean skyLightSent) {
         byte[] out = new byte[TOTAL_SIZE];
         // Absent sky-light sections default to fully-lit (nibble = 15 = 0xF) rather than dark.
         Arrays.fill(out, SLIGHT_OFF, SLIGHT_OFF + 32768, (byte) 0xFF);
@@ -172,23 +179,21 @@ public class JavaMapChunkTranslator implements ClientboundTranslator<JavaClientb
         }
 
         // biomes
-        if (groundUp) {
-            final int addCount = Integer.bitCount(addBitMask);
-            final int biomeStart = sectionCount * 4096
-                    + sectionCount * 2048                          // metadata
-                    + sectionCount * 2048                          // blockLight
-                    + (skyLightSent ? sectionCount * 2048 : 0)     // skyLight (absent in Nether/End)
-                    + addCount * 2048;                             // add data
-            if (biomeStart + 256 <= decompressed.length) {
-                System.arraycopy(decompressed, biomeStart, out, BIOME_OFF, 256);
-            }
+        final int addCount = Integer.bitCount(addBitMask);
+        final int biomeStart = sectionCount * 4096
+                + sectionCount * 2048                          // metadata
+                + sectionCount * 2048                          // blockLight
+                + (skyLightSent ? sectionCount * 2048 : 0)     // skyLight (absent in Nether/End)
+                + addCount * 2048;                             // add data
+        if (biomeStart + 256 <= decompressed.length) {
+            System.arraycopy(decompressed, biomeStart, out, BIOME_OFF, 256);
         }
 
         final byte[] rle = compressLZXRLE(out);
         final byte[] compressed = ZlibUtil.compress(rle);
 
         LceBlockRegionUpdatePacket pkt = new LceBlockRegionUpdatePacket();
-        pkt.setChunkFlags((byte) (groundUp ? 0x01 : 0x00));
+        pkt.setChunkFlags((byte) 0x01);
         pkt.setX(chunkX << 4);
         pkt.setY((short) 0);
         pkt.setZ(chunkZ << 4);
@@ -198,6 +203,93 @@ public class JavaMapChunkTranslator implements ClientboundTranslator<JavaClientb
         pkt.setSizeAndLevel(compressed.length & 0x3FFFFFFF); // levelIdx = 0
         pkt.setData(compressed);
         return pkt;
+    }
+
+    public static List<LceBlockRegionUpdatePacket> buildPartialConsoleChunks(int chunkX, int chunkZ, int primaryBitMask, int addBitMask, byte[] decompressed, boolean skyLightSent) {
+        List<LceBlockRegionUpdatePacket> packets = new java.util.ArrayList<>();
+        int sectionCount = Integer.bitCount(primaryBitMask);
+        if (sectionCount == 0) return packets;
+
+        int javaMetaBase = sectionCount * 4096;
+        int javaBlitBase = javaMetaBase + sectionCount * 2048;
+        int javaSlitBase = skyLightSent ? javaBlitBase + sectionCount * 2048 : -1;
+
+        int sectionIdx = 0;
+        for (int s = 0; s < 16; s++) {
+            if ((primaryBitMask & (1 << s)) == 0) continue;
+
+            byte[] sectionOut = new byte[10240];
+
+            int jBlk = sectionIdx * 4096;
+            for (int x = 0; x < 16; x++) {
+                for (int z = 0; z < 16; z++) {
+                    for (int y = 0; y < 16; y++) {
+                        int jIdx = y * 256 + z * 16 + x;
+                        // Partial chunks use XZY natively since they bypass LCE's full-chunk XZY reorder
+                        int cIdx = x * 256 + z * 16 + y;
+                        sectionOut[cIdx] = BLOCK_REMAP[decompressed[jBlk + jIdx] & 0xFF];
+                    }
+                }
+            }
+
+            int jMeta = javaMetaBase + sectionIdx * 2048;
+            int jBlit = javaBlitBase + sectionIdx * 2048;
+            int jSlit = (javaSlitBase >= 0) ? javaSlitBase + sectionIdx * 2048 : -1;
+
+            // Absent sky-light sections default to fully-lit (nibble = 15 = 0xF) rather than dark.
+            if (jSlit == -1) {
+                Arrays.fill(sectionOut, 8192, 10240, (byte) 0xFF);
+            }
+
+            // Console packed-nibble layout for partial chunk section is straightforward XZY
+            for (int x = 0; x < 16; x++) {
+                boolean jLow = (x & 1) == 0;
+                for (int z = 0; z < 16; z++) {
+                    for (int yp = 0; yp < 8; yp++) {
+                        int y0 = yp * 2;
+                        int jb0 = (y0 * 256 + z * 16 + x) >> 1;
+                        int jb1 = jb0 + 128;
+
+                        byte m0 = decompressed[jMeta + jb0];
+                        byte m1 = decompressed[jMeta + jb1];
+                        byte lceMeta = jLow ? (byte) ((m0 & 0x0F) | ((m1 & 0x0F) << 4)) : (byte) (((m0 >> 4) & 0x0F) | (((m1 >> 4) & 0x0F) << 4));
+
+                        byte b0 = decompressed[jBlit + jb0];
+                        byte b1 = decompressed[jBlit + jb1];
+                        byte lceBlit = jLow ? (byte) ((b0 & 0x0F) | ((b1 & 0x0F) << 4)) : (byte) (((b0 >> 4) & 0x0F) | (((b1 >> 4) & 0x0F) << 4));
+
+                        int cByteIdx = x * 128 + z * 8 + yp;
+                        sectionOut[4096 + cByteIdx] = lceMeta;
+                        sectionOut[6144 + cByteIdx] = lceBlit;
+
+                        if (jSlit >= 0) {
+                            byte s0 = decompressed[jSlit + jb0];
+                            byte s1 = decompressed[jSlit + jb1];
+                            byte lceSlit = jLow ? (byte) ((s0 & 0x0F) | ((s1 & 0x0F) << 4)) : (byte) (((s0 >> 4) & 0x0F) | (((s1 >> 4) & 0x0F) << 4));
+                            sectionOut[8192 + cByteIdx] = lceSlit;
+                        }
+                    }
+                }
+            }
+
+            byte[] rle = compressLZXRLE(sectionOut);
+            byte[] compressed = ZlibUtil.compress(rle);
+
+            LceBlockRegionUpdatePacket pkt = new LceBlockRegionUpdatePacket();
+            pkt.setChunkFlags((byte) 0x00);
+            pkt.setX(chunkX << 4);
+            pkt.setY((short) (s << 4));
+            pkt.setZ(chunkZ << 4);
+            pkt.setXs((byte) 15);
+            pkt.setYs((byte) 15);
+            pkt.setZs((byte) 15);
+            pkt.setSizeAndLevel(compressed.length & 0x3FFFFFFF);
+            pkt.setData(compressed);
+
+            packets.add(pkt);
+            sectionIdx++;
+        }
+        return packets;
     }
 
     /**
