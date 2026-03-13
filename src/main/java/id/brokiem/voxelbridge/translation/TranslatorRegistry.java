@@ -44,6 +44,7 @@ public class TranslatorRegistry {
         serverbound.put(0x66, new LceContainerClickTranslator());
         serverbound.put(0x6A, new LceContainerAckTranslator());
         serverbound.put(0x6B, new LceSetCreativeModeSlotTranslator());
+        serverbound.put(0x13, new LcePlayerCommandTranslator());
 
         // Clientbound LOGIN: Java -> LCE
         // After the login-state success packet, state transitions to PLAY so the play-state login packet is decoded in PLAY
@@ -59,12 +60,18 @@ public class TranslatorRegistry {
         clientbound.get(ConnectionState.PLAY).put(0x06, new JavaUpdateHealthTranslator());
         clientbound.get(ConnectionState.PLAY).put(0x08, new JavaPositionTranslator());
         clientbound.get(ConnectionState.PLAY).put(0x09, new JavaHeldItemSlotTranslator());
+        clientbound.get(ConnectionState.PLAY).put(0x0B, new JavaAnimationTranslator());
         clientbound.get(ConnectionState.PLAY).put(0x0E, new JavaSpawnEntityTranslator());
+        //clientbound.get(ConnectionState.PLAY).put(0x12, new JavaEntityVelocityTranslator());
         clientbound.get(ConnectionState.PLAY).put(0x13, new JavaDestroyEntitiesTranslator());
+        clientbound.get(ConnectionState.PLAY).put(0x1A, new JavaEntityStatusTranslator());
+        clientbound.get(ConnectionState.PLAY).put(0x1D, new JavaEntityEffectTranslator());
+        clientbound.get(ConnectionState.PLAY).put(0x1E, new JavaRemoveEntityEffectTranslator());
+        clientbound.get(ConnectionState.PLAY).put(0x22, new JavaMultiBlockChangeTranslator());
+        clientbound.get(ConnectionState.PLAY).put(0x2B, new JavaGameStateChangeTranslator());
         clientbound.get(ConnectionState.PLAY).put(0x39, new JavaAbilitiesTranslator());
         clientbound.get(ConnectionState.PLAY).put(0x40, new JavaKickDisconnectTranslator());
         clientbound.get(ConnectionState.PLAY).put(0x21, new JavaMapChunkTranslator());
-        clientbound.get(ConnectionState.PLAY).put(0x22, new JavaMultiBlockChangeTranslator());
         clientbound.get(ConnectionState.PLAY).put(0x26, new JavaMapChunkBulkTranslator());
         clientbound.get(ConnectionState.PLAY).put(0x07, new JavaRespawnTranslator());
         clientbound.get(ConnectionState.PLAY).put(0x02, new JavaChatTranslator());

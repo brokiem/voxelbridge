@@ -1,6 +1,7 @@
 package id.brokiem.voxelbridge.translation.impl;
 
 import id.brokiem.voxelbridge.protocol.java.packets.play.JavaClientboundLoginPacket;
+import id.brokiem.voxelbridge.protocol.java.packets.play.JavaServerboundClientSettingsPacket;
 import id.brokiem.voxelbridge.protocol.lce.packets.LceLoginPacket;
 import id.brokiem.voxelbridge.protocol.lce.packets.LceSetTimePacket;
 import id.brokiem.voxelbridge.server.ProxyConfig;
@@ -63,7 +64,15 @@ public class JavaLoginTranslator implements ClientboundTranslator<JavaClientboun
         setTime.setGameTime(0);
         setTime.setDayTime(6000);
 
-        return new TranslationResult(List.of(lce, setTime), List.of(), null, TranslationTarget.CLIENT);
+        JavaServerboundClientSettingsPacket clientSettings = new JavaServerboundClientSettingsPacket();
+        clientSettings.setLocale("en_US");
+        clientSettings.setViewDistance((byte) 8);
+        clientSettings.setChatFlags((byte) 0); // Enabled
+        clientSettings.setChatColors(false);
+        clientSettings.setDifficulty(input.getDifficulty());
+        clientSettings.setShowCape(true);
+
+        return new TranslationResult(List.of(lce, setTime), List.of(clientSettings), null, TranslationTarget.CLIENT);
     }
 }
 

@@ -54,6 +54,12 @@ public final class LcePacketRegistry {
         registry.register(0x69, LceContainerSetDataPacket::new);
         registry.register(0x6A, LceContainerAckPacket::new);
         registry.register(0x6B, LceSetCreativeModeSlotPacket::new);
+        registry.register(0x26, LceEntityEventPacket::new);
+        registry.register(0x46, LceGameEventPacket::new);
+        registry.register(0x13, LcePlayerCommandPacket::new);
+        registry.register(0x2A, LceRemoveMobEffectPacket::new);
+        registry.register(0x1C, LceSetEntityMotionPacket::new);
+        registry.register(0x29, LceUpdateMobEffectPacket::new);
         return registry;
     }
 }

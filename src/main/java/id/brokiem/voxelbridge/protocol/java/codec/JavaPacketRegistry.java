@@ -60,6 +60,12 @@ public final class JavaPacketRegistry {
         play.register(0x30, JavaClientboundWindowItemsPacket::new);
         play.register(0x31, JavaClientboundCraftProgressBarPacket::new);
         play.register(0x32, JavaClientboundTransactionPacket::new);
+        play.register(0x0B, JavaClientboundAnimationPacket::new);
+        play.register(0x1D, JavaClientboundEntityEffectPacket::new);
+        play.register(0x1A, JavaClientboundEntityStatusPacket::new);
+        play.register(0x12, JavaClientboundEntityVelocityPacket::new);
+        play.register(0x2B, JavaClientboundGameStateChangePacket::new);
+        play.register(0x1E, JavaClientboundRemoveEntityEffectPacket::new);
         jpr.stateRegistries.put(ConnectionState.PLAY, play);
 
         return jpr;
