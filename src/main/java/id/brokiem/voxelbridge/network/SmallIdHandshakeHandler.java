@@ -17,7 +17,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 @Slf4j
 public class SmallIdHandshakeHandler extends ChannelInboundHandlerAdapter {
-    private static final AtomicInteger NEXT_ID = new AtomicInteger(1);
+    private static final AtomicInteger NEXT_ID = new AtomicInteger(4);
 
     private final ProxyConfig config;
     private final TranslatorRegistry translatorRegistry;
@@ -30,7 +30,7 @@ public class SmallIdHandshakeHandler extends ChannelInboundHandlerAdapter {
     private static byte nextSmallId() {
         while (true) {
             int current = NEXT_ID.get();
-            int next = current == 255 ? 1 : current + 1;
+            int next = current == 255 ? 4 : current + 1;
             if (NEXT_ID.compareAndSet(current, next)) {
                 return (byte) current;
             }
