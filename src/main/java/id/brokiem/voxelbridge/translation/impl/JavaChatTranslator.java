@@ -15,6 +15,10 @@ public class JavaChatTranslator implements ClientboundTranslator<JavaClientbound
 
     @Override
     public TranslationResult translate(JavaClientboundChatPacket input, Session session) {
+        if (!session.isLceReady()) {
+            return TranslationResult.empty();
+        }
+
         String inputMessage = input.getMessage();
         // band-aid solution
         // TODO: properly format json messages with adventure-api and also format java translation keys

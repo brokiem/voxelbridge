@@ -58,6 +58,8 @@ public class JavaLoginTranslator implements ClientboundTranslator<JavaClientboun
         lce.setXzSize((short) config.getLevelMaxWidth());
         lce.setHellScale((byte) config.getHellLevelMaxScale());
 
+        session.setLceReady(true);
+
         // Emit synthetic SetTime (gameTime=0, dayTime=6000 noon) so LCE client has time
         // even if the Java server sends Update Time late or in a different order
         LceSetTimePacket setTime = new LceSetTimePacket();

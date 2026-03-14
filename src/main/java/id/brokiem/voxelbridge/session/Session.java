@@ -18,6 +18,7 @@ public class Session {
     private Channel clientChannel;
     private Channel serverChannel;
     private ConnectionState state = ConnectionState.HANDSHAKE;
+    private boolean isLceReady = false;
     private String username;
     private int entityId;
 
